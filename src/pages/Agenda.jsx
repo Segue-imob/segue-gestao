@@ -83,7 +83,7 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
         </button>
       </div>
 
-      <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone overflow-hidden">
+      <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-segue-stone/30">
           <h2 className="text-base font-semibold text-segue-black">
             {MONTHS[month]} {year}

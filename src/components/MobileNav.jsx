@@ -9,8 +9,8 @@ const NAV_ITEMS = [
 export default function MobileNav({ active, onChange }) {
   return (
     <>
-      <header className="md:hidden sticky top-0 z-30 flex items-center gap-2.5 bg-segue-black px-4 py-3.5">
-        <img src="/logo-segue.png" alt="Logo Segue Imobiliária" className="h-7 w-7 object-contain" />
+      <header className="md:hidden sticky top-0 z-30 flex flex-row items-center gap-2.5 bg-segue-black px-4 py-3.5">
+        <img src="/logo-segue.png" alt="Logo Segue Imobiliária" className="h-7 w-auto object-contain shrink-0" />
         <p className="text-segue-cream font-bold tracking-tight">SEGUE Gestão</p>
       </header>
 

@@ -18,7 +18,7 @@ export default function DayDemandasModal({ open, date, demandas, onClose, onOpen
     <div className="fixed inset-0 z-50 flex justify-end animate-fade-in">
       <div className="absolute inset-0 bg-segue-black/40 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative h-full w-full max-w-sm bg-segue-cream shadow-panel flex flex-col animate-slide-in">
+      <div className="relative h-full w-full max-w-sm bg-white shadow-panel flex flex-col animate-slide-in">
         <div className="px-5 py-4 border-b border-segue-stone/30 flex items-start justify-between bg-segue-black">
           <div>
             <p className="text-[11px] uppercase tracking-wide text-segue-stone font-semibold">
@@ -28,7 +28,7 @@ export default function DayDemandasModal({ open, date, demandas, onClose, onOpen
           </div>
           <button
             onClick={onClose}
-            className="focus-ring rounded-lg p-1.5 text-segue-stone hover:bg-segue-cream/10 hover:text-segue-cream"
+            className="focus-ring rounded-lg p-1.5 text-segue-stone hover:bg-white/10 hover:text-segue-cream"
             aria-label="Fechar"
           >
             <X size={18} />

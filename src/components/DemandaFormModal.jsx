@@ -59,8 +59,8 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
       <div className="absolute inset-0 bg-segue-black/50 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl bg-segue-cream shadow-panel animate-slide-in">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-segue-stone/30 sticky top-0 bg-segue-cream z-10">
+      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-xl bg-white shadow-panel animate-slide-in">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-segue-stone/30 sticky top-0 bg-white z-10">
           <div>
             <h2 className="text-base font-semibold text-segue-black">
               {isEdit ? 'Editar demanda' : 'Nova demanda'}

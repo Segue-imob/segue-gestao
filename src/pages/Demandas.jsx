@@ -46,7 +46,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
         </button>
       </div>
 
-      <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone overflow-hidden">
+      <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone overflow-hidden">
         <div className="flex flex-wrap items-center gap-3 p-4 border-b border-segue-stone/30">
           <div className="relative flex-1 min-w-[220px]">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-segue-black/40" />
@@ -104,7 +104,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
                   <tr
                     key={d.id}
                     className={`border-b border-segue-stone/20 hover:bg-segue-terracotta/5 transition-colors ${
-                      idx % 2 === 0 ? 'bg-segue-cream' : 'bg-segue-stone-pale/50'
+                      idx % 2 === 0 ? 'bg-white' : 'bg-segue-stone-pale/50'
                     }`}
                   >
                     <td className="px-4 py-3 font-mono text-xs text-segue-black/55">{d.codigo}</td>
@@ -158,7 +158,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
       {confirmDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
           <div className="absolute inset-0 bg-segue-black/50 backdrop-blur-sm" onClick={() => setConfirmDelete(null)} />
-          <div className="relative w-full max-w-sm rounded-xl bg-segue-cream p-6 shadow-panel">
+          <div className="relative w-full max-w-sm rounded-xl bg-white p-6 shadow-panel">
             <h3 className="text-base font-semibold text-segue-black">Excluir demanda?</h3>
             <p className="mt-2 text-sm text-segue-black/55">
               Tem certeza que deseja excluir <span className="font-medium text-segue-black/80">{confirmDelete.titulo}</span>?
@@ -195,7 +195,7 @@ function FilterSelect({ label, value, onChange, options }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-label={label}
-        className="focus-ring appearance-none rounded-lg border border-segue-stone bg-segue-cream py-2 pl-3 pr-8 text-sm text-segue-black/80 hover:border-segue-stone"
+        className="focus-ring appearance-none rounded-lg border border-segue-stone bg-white py-2 pl-3 pr-8 text-sm text-segue-black/80 hover:border-segue-stone"
       >
         {options.map((o) => (
           <option key={o} value={o}>

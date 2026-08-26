@@ -11,7 +11,7 @@ export default function Toast({ toasts, onDismiss }) {
           className={`animate-slide-in flex items-start gap-3 rounded-lg px-4 py-3 shadow-panel ring-1 ${
             t.type === 'error'
               ? 'bg-red-50 ring-red-200 text-red-800'
-              : 'bg-segue-cream ring-segue-stone text-segue-black'
+              : 'bg-white ring-segue-stone text-segue-black'
           }`}
         >
           {t.type === 'error' ? (

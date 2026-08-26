@@ -10,13 +10,13 @@ export default function Sidebar({ active, onChange, pendentesCount }) {
   return (
     <aside className="hidden md:flex md:w-64 md:flex-col shrink-0 bg-segue-black text-segue-cream h-screen sticky top-0">
       <div className="px-6 pt-8 pb-6 border-b border-segue-cream/10">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-row items-center gap-3">
           <img
             src="/logo-segue.png"
             alt="Logo Segue Imobiliária"
-            className="h-9 w-9 object-contain shrink-0"
+            className="h-9 w-auto object-contain shrink-0"
           />
-          <div>
+          <div className="flex flex-col justify-center">
             <p className="text-segue-cream font-bold leading-tight tracking-tight">SEGUE</p>
             <p className="text-[11px] uppercase tracking-widest text-segue-terracotta font-semibold">
               Gestão
@@ -37,7 +37,7 @@ export default function Sidebar({ active, onChange, pendentesCount }) {
               className={`focus-ring w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
                   ? 'bg-segue-terracotta text-segue-cream shadow-sm'
-                  : 'text-segue-stone hover:bg-segue-cream/5 hover:text-segue-cream'
+                  : 'text-segue-stone hover:bg-white/5 hover:text-segue-cream'
               }`}
             >
               <Icon size={18} strokeWidth={2} className={isActive ? 'text-segue-cream' : ''} />
@@ -46,7 +46,7 @@ export default function Sidebar({ active, onChange, pendentesCount }) {
                 <span
                   className={`ml-auto rounded-full text-[11px] font-bold px-2 py-0.5 ${
                     isActive
-                      ? 'bg-segue-cream text-segue-terracotta'
+                      ? 'bg-white text-segue-terracotta'
                       : 'bg-segue-brown text-segue-cream'
                   }`}
                 >

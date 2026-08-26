@@ -78,7 +78,7 @@ export default function Relatorios({ demandas }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone p-5">
+        <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone p-5">
           <h2 className="text-sm font-semibold text-segue-black mb-1">Demandas por origem</h2>
           <p className="text-xs text-segue-black/40 mb-5">Inquilino vs. Proprietário vs. Interna</p>
           <div className="space-y-4">
@@ -99,7 +99,7 @@ export default function Relatorios({ demandas }) {
           </div>
         </div>
 
-        <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone p-5">
+        <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone p-5">
           <h2 className="text-sm font-semibold text-segue-black mb-1">Demandas por tipo</h2>
           <p className="text-xs text-segue-black/40 mb-5">
             Financeiro, Manutenção, Rescisão, Dúvidas e Outros
@@ -128,7 +128,7 @@ export default function Relatorios({ demandas }) {
 
 function StatCard({ icon: Icon, iconClass, label, value }) {
   return (
-    <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone p-5">
+    <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone p-5">
       <div className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${iconClass}`}>
         <Icon size={19} />
       </div>
