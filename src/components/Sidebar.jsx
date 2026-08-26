@@ -9,15 +9,15 @@ const NAV_ITEMS = [
 export default function Sidebar({ active, onChange, pendentesCount }) {
   return (
     <aside className="hidden md:flex md:w-64 md:flex-col shrink-0 bg-segue-black text-segue-cream h-screen sticky top-0">
-      <div className="px-6 pt-8 pb-6 border-b border-segue-cream/10 flex flex-col items-center text-center">
-        <div className="flex flex-row items-center justify-center gap-3">
+      <div className="px-4 py-6 border-b border-segue-cream/10 flex flex-col items-center text-center">
+        <div className="flex items-center justify-center gap-3">
           <img
-            src="/logo-segue.png"
+            src="/logo-segue-light.png"
             alt="Logo Segue Imobiliária"
-            className="h-9 w-auto object-contain shrink-0"
+            className="h-14 w-auto object-contain shrink-0"
           />
           <div className="flex flex-col justify-center text-left">
-            <p className="text-segue-cream font-bold leading-tight tracking-tight">SEGUE</p>
+            <p className="text-segue-cream font-bold leading-tight tracking-tight text-lg">SEGUE</p>
             <p className="text-[11px] uppercase tracking-widest text-segue-terracotta font-semibold">
               Gestão
             </p>
