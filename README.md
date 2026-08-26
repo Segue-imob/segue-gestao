@@ -11,7 +11,11 @@ Stack: **React + Vite**, **Tailwind CSS**, **Supabase** (Postgres + Realtime).
    - a tabela `demandas` (incluindo a coluna `codigo_imovel` para o código interno/imóvel);
    - a geração automática do código (`DEM-0001`, `DEM-0002`, ...);
 
-   > **Já rodou o schema antes?** O arquivo inclui, no final, um bloco de **migração** (`alter table ... add column if not exists codigo_imovel` e a remoção da restrição antiga do campo `tipo`, que agora aceita texto livre quando "Outros" é especificado). Basta rodar o `schema.sql` novamente — os comandos são seguros para reexecução (idempotentes).
+   > **Já rodou o schema antes?** O arquivo inclui, no final, blocos de **migração** idempotentes:
+   > - `codigo_imovel` (adicionada) e a restrição antiga do campo `tipo` removida (agora aceita texto livre quando "Outros" é especificado);
+   > - migração do **pipeline de status** do modelo antigo (Pendente / Em Andamento / Concluído) para o novo, usado pelo quadro Kanban: **Recebida → Em Agendamento → Visita Agendada → Concluído**.
+   >
+   > Basta rodar o `schema.sql` novamente — os comandos são seguros para reexecução.
    - índices e políticas de Row Level Security.
 3. Em **Project Settings → API**, copie a **Project URL** e a **anon public key**.
 
@@ -60,14 +64,14 @@ O arquivo `vercel.json` já está configurado com rewrite para SPA, então a nav
 
 ```
 src/
-  components/       Sidebar, navegação mobile, modais, badges, toasts
+  components/       Sidebar, navegação mobile, modais, badges, toasts, StatusDropdown, KanbanBoard
   pages/
     Agenda.jsx       Calendário mensal com marcadores de urgência
-    Demandas.jsx     Tabela com busca, filtros e troca de status
+    Demandas.jsx     Visão Lista (tabela) e Kanban, com busca, filtros e troca de status
     Relatorios.jsx   Cards de indicadores e gráficos de barras
   lib/
     supabaseClient.js
-    constants.js      Opções de origem/urgência/tipo/status e helpers
+    constants.js      Opções de origem/urgência/tipo/status, pipeline do Kanban e helpers
   App.jsx             Estado global e integração com Supabase (CRUD + Realtime)
 supabase/
   schema.sql          Schema completo para rodar no SQL Editor do Supabase
@@ -75,7 +79,7 @@ supabase/
 
 ## Funcionalidades
 
-- **Agenda**: calendário do mês atual, com marcadores coloridos por urgência em cada dia. Clicar em um dia abre um painel lateral com as demandas daquela data.
-- **Demandas**: cadastro via modal (código automático, origem, urgência, tipo, título, descrição, vencimento), tabela com busca por palavra-chave, filtros por origem/urgência/status e troca rápida de status inline.
+- **Agenda**: calendário do mês atual, com marcadores coloridos por urgência em cada dia. Clicar em um dia abre um painel lateral com as demandas daquela data (somente consulta — o cadastro fica na aba Demandas).
+- **Demandas**: cadastro via modal (código automático, código interno/imóvel, origem, urgência, tipo — com campo livre para "Outros" —, título, descrição, vencimento). Alterne entre **Lista** (tabela com busca, filtros e troca de status inline) e **Kanban** (quadro com 4 colunas — Recebida, Em Agendamento, Visita Agendada, Concluído — cada card com botão de avanço rápido e menu de status).
 - **Relatórios**: cards com total de demandas, em andamento, concluídas e taxa de urgência crítica, além de gráficos de barras por origem e por tipo.
 - Atualização em tempo real via Supabase Realtime — mudanças feitas por outro usuário aparecem automaticamente.

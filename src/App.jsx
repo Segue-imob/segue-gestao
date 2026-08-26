@@ -7,6 +7,7 @@ import Agenda from './pages/Agenda'
 import Demandas from './pages/Demandas'
 import Relatorios from './pages/Relatorios'
 import { supabase } from './lib/supabaseClient'
+import { STATUS_INICIAL } from './lib/constants'
 
 export default function App() {
   const [tab, setTab] = useState('agenda')
@@ -82,7 +83,7 @@ export default function App() {
       }
       pushToast('Demanda atualizada com sucesso.')
     } else {
-      const { error } = await supabase.from('demandas').insert([{ ...form, status: 'Pendente' }])
+      const { error } = await supabase.from('demandas').insert([{ ...form, status: STATUS_INICIAL }])
       setSaving(false)
       if (error) {
         pushToast('Erro ao criar a demanda.', 'error')
@@ -118,7 +119,9 @@ export default function App() {
     pushToast(`Status atualizado para "${status}".`)
   }
 
-  const pendentesCount = demandas.filter((d) => d.status === 'Pendente').length
+  // Contador de destaque no menu: demandas recém-recebidas que ainda não
+  // entraram no fluxo de agendamento.
+  const pendentesCount = demandas.filter((d) => d.status === STATUS_INICIAL).length
 
   return (
     <div className="min-h-screen flex bg-white">

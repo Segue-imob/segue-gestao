@@ -20,7 +20,12 @@ const ORIGEM_COLORS = {
 export default function Relatorios({ demandas }) {
   const stats = useMemo(() => {
     const total = demandas.length
-    const emAndamento = demandas.filter((d) => d.status === 'Em Andamento').length
+    // "Em andamento" agrupa as duas etapas intermediárias do Kanban
+    // (Em Agendamento + Visita Agendada), ou seja, tudo que já saiu de
+    // "Recebida" mas ainda não chegou a "Concluído".
+    const emAndamento = demandas.filter(
+      (d) => d.status === 'Em Agendamento' || d.status === 'Visita Agendada'
+    ).length
     const concluidas = demandas.filter((d) => d.status === 'Concluído').length
     const criticas = demandas.filter((d) => d.urgencia === 'Crítica').length
     const taxaCritica = total > 0 ? Math.round((criticas / total) * 100) : 0

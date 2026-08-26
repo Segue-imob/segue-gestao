@@ -16,7 +16,7 @@ create table if not exists public.demandas (
   titulo text not null,
   descricao text,
   data_vencimento date not null,
-  status text not null default 'Pendente' check (status in ('Pendente', 'Em Andamento', 'Concluído')),
+  status text not null default 'Recebida' check (status in ('Recebida', 'Em Agendamento', 'Visita Agendada', 'Concluído')),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
@@ -105,3 +105,20 @@ create index if not exists idx_demandas_codigo_imovel on public.demandas (codigo
 -- Remove a restrição antiga que limitava "tipo" às 5 opções fixas,
 -- permitindo salvar a especificação digitada quando "Outros" é escolhido.
 alter table public.demandas drop constraint if exists demandas_tipo_check;
+
+-- ============================================================
+-- MIGRAÇÃO do pipeline de status para o novo quadro Kanban
+-- (Recebida -> Em Agendamento -> Visita Agendada -> Concluído).
+-- Rode apenas se a tabela já existir com o pipeline antigo
+-- (Pendente / Em Andamento / Concluído).
+-- ============================================================
+
+update public.demandas set status = 'Recebida' where status = 'Pendente';
+update public.demandas set status = 'Em Agendamento' where status = 'Em Andamento';
+
+alter table public.demandas drop constraint if exists demandas_status_check;
+alter table public.demandas
+  add constraint demandas_status_check
+  check (status in ('Recebida', 'Em Agendamento', 'Visita Agendada', 'Concluído'));
+
+alter table public.demandas alter column status set default 'Recebida';
