@@ -4,32 +4,34 @@ export const TIPOS = ['Financeiro', 'Manutenção', 'Rescisão', 'Dúvidas', 'Ou
 
 export const STATUS_LIST = ['Pendente', 'Em Andamento', 'Concluído']
 
-// Urgência segue a paleta corporativa:
-// Baixa -> Stone Gray | Média -> Warm Brown | Alta -> Terracotta | Crítica -> vermelho padrão de erro
+// Urgência segue a régua de cores solicitada:
+// Baixa -> Verde (#10B981) | Média -> Azul (#3B82F6) | Alta -> Vermelho (#EF4444) | Crítica -> Laranja (#F97316)
+// Os tons abaixo usam a escala padrão do Tailwind, que corresponde exatamente
+// a esses hex (emerald-500, blue-500, red-500 e orange-500).
 export const URGENCIAS = [
   {
     label: 'Baixa',
-    dot: 'bg-segue-stone',
-    badge: 'bg-segue-stone-pale text-segue-black/70 ring-1 ring-inset ring-segue-stone',
-    solid: 'bg-segue-stone',
+    dot: 'bg-emerald-500',
+    badge: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200',
+    solid: 'bg-emerald-500',
   },
   {
     label: 'Média',
-    dot: 'bg-segue-brown',
-    badge: 'bg-segue-brown/10 text-segue-brown ring-1 ring-inset ring-segue-brown/25',
-    solid: 'bg-segue-brown',
+    dot: 'bg-blue-500',
+    badge: 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-200',
+    solid: 'bg-blue-500',
   },
   {
     label: 'Alta',
-    dot: 'bg-segue-terracotta',
-    badge: 'bg-segue-terracotta/10 text-segue-terracotta ring-1 ring-inset ring-segue-terracotta/25',
-    solid: 'bg-segue-terracotta',
+    dot: 'bg-red-500',
+    badge: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-200',
+    solid: 'bg-red-500',
   },
   {
     label: 'Crítica',
-    dot: 'bg-red-600',
-    badge: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-200',
-    solid: 'bg-red-600',
+    dot: 'bg-orange-500',
+    badge: 'bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-200',
+    solid: 'bg-orange-500',
   },
 ]
 

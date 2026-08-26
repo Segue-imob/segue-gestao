@@ -1,8 +1,8 @@
-import { X, Plus, CalendarClock } from 'lucide-react'
+import { X, CalendarClock } from 'lucide-react'
 import Badge from './Badge'
-import { urgenciaMeta, STATUS_META, formatDateBR } from '../lib/constants'
+import { urgenciaMeta, STATUS_META } from '../lib/constants'
 
-export default function DayDemandasModal({ open, date, demandas, onClose, onOpenDemanda, onNovaDemanda }) {
+export default function DayDemandasModal({ open, date, demandas, onClose, onOpenDemanda }) {
   if (!open) return null
 
   const label = date
@@ -80,13 +80,9 @@ export default function DayDemandasModal({ open, date, demandas, onClose, onOpen
         </div>
 
         <div className="px-5 py-4 border-t border-segue-stone/30">
-          <button
-            onClick={onNovaDemanda}
-            className="focus-ring w-full inline-flex items-center justify-center gap-2 rounded-lg bg-segue-terracotta px-4 py-2.5 text-sm font-semibold text-segue-cream hover:bg-segue-terracotta-dark"
-          >
-            <Plus size={16} />
-            Nova demanda nesta data
-          </button>
+          <p className="text-center text-xs text-segue-black/40">
+            Para cadastrar uma nova demanda, acesse a aba <span className="font-semibold text-segue-black/60">Demandas</span>.
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { urgenciaMeta, todayISO } from '../lib/constants'
 import DayDemandasModal from '../components/DayDemandasModal'
 
@@ -13,7 +13,7 @@ function toISO(y, m, d) {
   return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`
 }
 
-export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
+export default function Agenda({ demandas, onOpenDemanda }) {
   const [cursor, setCursor] = useState(() => {
     const now = new Date()
     return { year: now.getFullYear(), month: now.getMonth() }
@@ -67,20 +67,11 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-        <div>
-          <h1 className="text-xl font-bold text-segue-black tracking-tight">Agenda de prazos</h1>
-          <p className="text-sm text-segue-black/55 mt-0.5">
-            Acompanhe as demandas por data de vencimento.
-          </p>
-        </div>
-        <button
-          onClick={() => onNovaDemanda()}
-          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-segue-terracotta px-4 py-2.5 text-sm font-semibold text-segue-cream hover:bg-segue-terracotta-dark shadow-card"
-        >
-          <Plus size={16} />
-          Nova demanda
-        </button>
+      <div className="mb-6">
+        <h1 className="text-xl font-bold text-segue-black tracking-tight">Agenda de prazos</h1>
+        <p className="text-sm text-segue-black/55 mt-0.5">
+          Acompanhe as demandas por data de vencimento.
+        </p>
       </div>
 
       <div className="rounded-xl bg-white shadow-card ring-1 ring-segue-stone overflow-hidden">
@@ -191,11 +182,6 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
         onOpenDemanda={(d) => {
           setSelectedDate(null)
           onOpenDemanda(d)
-        }}
-        onNovaDemanda={() => {
-          const d = selectedDate
-          setSelectedDate(null)
-          onNovaDemanda(d)
         }}
       />
     </div>

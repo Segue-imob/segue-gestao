@@ -71,7 +71,7 @@ export default function Relatorios({ demandas }) {
         />
         <StatCard
           icon={AlertTriangle}
-          iconClass="text-red-600 bg-red-50"
+          iconClass="text-orange-600 bg-orange-50"
           label="Taxa de urgência crítica"
           value={`${stats.taxaCritica}%`}
         />
