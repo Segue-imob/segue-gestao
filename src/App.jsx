@@ -132,7 +132,7 @@ export default function App() {
 
         <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-6 max-w-7xl w-full mx-auto">
           {tab === 'agenda' && (
-            <Agenda demandas={demandas} onOpenDemanda={openEditDemanda} />
+            <Agenda demandas={demandas} onOpenDemanda={openEditDemanda} onStatusChange={handleStatusChange} />
           )}
           {tab === 'demandas' && (
             <Demandas

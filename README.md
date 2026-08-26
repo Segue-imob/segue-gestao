@@ -64,7 +64,7 @@ O arquivo `vercel.json` já está configurado com rewrite para SPA, então a nav
 
 ```
 src/
-  components/       Sidebar, navegação mobile, modais, badges, toasts, StatusDropdown, KanbanBoard
+  components/       Sidebar, navegação mobile, modais, badges, toasts, StatusDropdown, KanbanBoard, AgendaLabel, DemandaDetailModal
   pages/
     Agenda.jsx       Calendário mensal com marcadores de urgência
     Demandas.jsx     Visão Lista (tabela) e Kanban, com busca, filtros e troca de status
@@ -79,7 +79,7 @@ supabase/
 
 ## Funcionalidades
 
-- **Agenda**: calendário do mês atual, com marcadores coloridos por urgência em cada dia. Clicar em um dia abre um painel lateral com as demandas daquela data (somente consulta — o cadastro fica na aba Demandas).
+- **Agenda**: alterne entre as visões **Mês**, **Semana** e **Dia**. Cada demanda aparece como uma etiqueta retangular colorida pela urgência (`[Código/Imóvel] - [Título]`); no mês, até 3 etiquetas por dia com "+X mais" para o restante (abre o painel lateral com a lista completa). Clicar em qualquer etiqueta abre um modal de detalhes com troca rápida de status e atalho para o formulário completo de edição.
 - **Demandas**: cadastro via modal (código automático, código interno/imóvel, origem, urgência, tipo — com campo livre para "Outros" —, título, descrição, vencimento). Alterne entre **Lista** (tabela com busca, filtros e troca de status inline) e **Kanban** (quadro com 4 colunas — Recebida, Em Agendamento, Visita Agendada, Concluído — cada card com botão de avanço rápido e menu de status).
 - **Relatórios**: cards com total de demandas, em andamento, concluídas e taxa de urgência crítica, além de gráficos de barras por origem e por tipo.
 - Atualização em tempo real via Supabase Realtime — mudanças feitas por outro usuário aparecem automaticamente.
