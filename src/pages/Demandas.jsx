@@ -21,6 +21,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
         return (
           d.titulo.toLowerCase().includes(term) ||
           d.codigo?.toLowerCase().includes(term) ||
+          d.codigo_imovel?.toLowerCase().includes(term) ||
           (d.descricao || '').toLowerCase().includes(term)
         )
       })
@@ -53,7 +54,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar por código, título ou descrição..."
+              placeholder="Buscar por código, imóvel, título ou descrição..."
               className="focus-ring w-full rounded-lg border border-segue-stone bg-segue-stone-pale py-2 pl-9 pr-3 text-sm text-segue-black/80 placeholder:text-segue-black/40"
             />
           </div>
@@ -74,6 +75,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
               <tr className="border-b border-segue-stone/30 bg-segue-stone-pale/60 text-left text-[11px] uppercase tracking-wide text-segue-black/55">
                 <th className="px-4 py-3 font-semibold">Código</th>
                 <th className="px-4 py-3 font-semibold">Título</th>
+                <th className="px-4 py-3 font-semibold">Código Interno / Imóvel</th>
                 <th className="px-4 py-3 font-semibold">Origem</th>
                 <th className="px-4 py-3 font-semibold">Tipo</th>
                 <th className="px-4 py-3 font-semibold">Urgência</th>
@@ -85,7 +87,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
             <tbody>
               {loading && (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-segue-black/40 text-sm">
+                  <td colSpan={9} className="px-4 py-10 text-center text-segue-black/40 text-sm">
                     Carregando demandas...
                   </td>
                 </tr>
@@ -93,7 +95,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
 
               {!loading && filtradas.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-segue-black/40 text-sm">
+                  <td colSpan={9} className="px-4 py-10 text-center text-segue-black/40 text-sm">
                     Nenhuma demanda encontrada com os filtros atuais.
                   </td>
                 </tr>
@@ -116,6 +118,15 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
                       >
                         {d.titulo}
                       </button>
+                    </td>
+                    <td className="px-4 py-3">
+                      {d.codigo_imovel ? (
+                        <span className="inline-flex items-center rounded-md bg-segue-terracotta/10 px-2 py-1 text-xs font-semibold text-segue-terracotta whitespace-nowrap">
+                          {d.codigo_imovel}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-segue-black/30">—</span>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-segue-black/70">{d.origem}</td>
                     <td className="px-4 py-3 text-segue-black/70">{d.tipo}</td>

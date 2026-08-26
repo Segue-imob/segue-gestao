@@ -6,9 +6,21 @@ const BLANK = {
   origem: 'Inquilino',
   urgencia: 'Baixa',
   tipo: 'Financeiro',
+  tipoOutro: '',
+  codigo_imovel: '',
   titulo: '',
   descricao: '',
   data_vencimento: todayISO(),
+}
+
+// Deriva os campos de tipo a partir do valor salvo no banco: se o valor não
+// estiver entre as opções fixas, trata-se de um tipo "Outros" personalizado.
+function tipoFieldsFromInitial(initialData) {
+  if (!initialData) return { tipo: BLANK.tipo, tipoOutro: '' }
+  if (TIPOS.includes(initialData.tipo)) {
+    return { tipo: initialData.tipo, tipoOutro: '' }
+  }
+  return { tipo: 'Outros', tipoOutro: initialData.tipo || '' }
 }
 
 export default function DemandaFormModal({ open, onClose, onSave, initialData, saving, prefillDate }) {
@@ -22,7 +34,8 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
           ? {
               origem: initialData.origem,
               urgencia: initialData.urgencia,
-              tipo: initialData.tipo,
+              ...tipoFieldsFromInitial(initialData),
+              codigo_imovel: initialData.codigo_imovel || '',
               titulo: initialData.titulo,
               descricao: initialData.descricao || '',
               data_vencimento: initialData.data_vencimento,
@@ -36,6 +49,7 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
   if (!open) return null
 
   const isEdit = Boolean(initialData)
+  const isOutros = form.tipo === 'Outros'
 
   function update(field, value) {
     setForm((f) => ({ ...f, [field]: value }))
@@ -45,6 +59,7 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
     const e = {}
     if (!form.titulo.trim()) e.titulo = 'Informe um título para a demanda.'
     if (!form.data_vencimento) e.data_vencimento = 'Informe a data de vencimento.'
+    if (isOutros && !form.tipoOutro.trim()) e.tipoOutro = 'Especifique o tipo da demanda.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -52,7 +67,19 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
   function handleSubmit(ev) {
     ev.preventDefault()
     if (!validate()) return
-    onSave(form)
+
+    // O valor final de "tipo" salvo no Supabase é a especificação digitada
+    // quando "Outros" é selecionado; caso contrário, é a opção escolhida.
+    const payload = {
+      origem: form.origem,
+      urgencia: form.urgencia,
+      tipo: isOutros ? form.tipoOutro.trim() : form.tipo,
+      codigo_imovel: form.codigo_imovel.trim() || null,
+      titulo: form.titulo,
+      descricao: form.descricao,
+      data_vencimento: form.data_vencimento,
+    }
+    onSave(payload)
   }
 
   return (
@@ -89,6 +116,18 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
               />
             </div>
           )}
+
+          <div>
+            <label className="block text-xs font-semibold text-segue-black/55 mb-1.5">
+              Código Interno / Imóvel
+            </label>
+            <input
+              value={form.codigo_imovel}
+              onChange={(e) => update('codigo_imovel', e.target.value)}
+              placeholder="Ex: AP-302, Ed. Royal Beach, Cod 1234"
+              className="focus-ring w-full rounded-lg border border-segue-stone px-3 py-2 text-sm text-segue-black placeholder:text-segue-black/40"
+            />
+          </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -137,6 +176,25 @@ export default function DemandaFormModal({ open, onClose, onSave, initialData, s
                 </option>
               ))}
             </select>
+
+            {isOutros && (
+              <div className="mt-3 animate-fade-in">
+                <label className="block text-xs font-semibold text-segue-black/55 mb-1.5">
+                  Especifique o Tipo
+                </label>
+                <input
+                  value={form.tipoOutro}
+                  onChange={(e) => update('tipoOutro', e.target.value)}
+                  placeholder="Digite o tipo da demanda..."
+                  className={`focus-ring w-full rounded-lg border px-3 py-2 text-sm text-segue-black placeholder:text-segue-black/40 ${
+                    errors.tipoOutro ? 'border-rose-400' : 'border-segue-stone'
+                  }`}
+                />
+                {errors.tipoOutro && (
+                  <p className="mt-1 text-xs text-rose-600">{errors.tipoOutro}</p>
+                )}
+              </div>
+            )}
           </div>
 
           <div>

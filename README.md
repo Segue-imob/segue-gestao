@@ -8,8 +8,10 @@ Stack: **React + Vite**, **Tailwind CSS**, **Supabase** (Postgres + Realtime).
 
 1. Crie um projeto em [supabase.com](https://supabase.com).
 2. Vá em **SQL Editor** e rode o conteúdo do arquivo [`supabase/schema.sql`](./supabase/schema.sql). Isso cria:
-   - a tabela `demandas`;
+   - a tabela `demandas` (incluindo a coluna `codigo_imovel` para o código interno/imóvel);
    - a geração automática do código (`DEM-0001`, `DEM-0002`, ...);
+
+   > **Já rodou o schema antes?** O arquivo inclui, no final, um bloco de **migração** (`alter table ... add column if not exists codigo_imovel` e a remoção da restrição antiga do campo `tipo`, que agora aceita texto livre quando "Outros" é especificado). Basta rodar o `schema.sql` novamente — os comandos são seguros para reexecução (idempotentes).
    - índices e políticas de Row Level Security.
 3. Em **Project Settings → API**, copie a **Project URL** e a **anon public key**.
 

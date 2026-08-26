@@ -63,6 +63,11 @@ export default function DayDemandasModal({ open, date, demandas, onClose, onOpen
                 <p className="mt-1.5 text-sm font-medium text-segue-black line-clamp-2">
                   {d.titulo}
                 </p>
+                {d.codigo_imovel && (
+                  <span className="mt-1.5 inline-flex items-center rounded-md bg-segue-terracotta/10 px-2 py-0.5 text-[11px] font-semibold text-segue-terracotta">
+                    {d.codigo_imovel}
+                  </span>
+                )}
                 <div className="mt-2 flex items-center gap-2">
                   <Badge className={sm.badge} dotClassName={sm.dot}>
                     {d.status}

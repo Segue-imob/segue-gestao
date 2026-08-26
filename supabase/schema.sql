@@ -7,9 +7,12 @@ create extension if not exists "pgcrypto";
 create table if not exists public.demandas (
   id uuid primary key default gen_random_uuid(),
   codigo text unique,
+  codigo_imovel text,
   origem text not null check (origem in ('Inquilino', 'Proprietário', 'Interna')),
   urgencia text not null check (urgencia in ('Baixa', 'Média', 'Alta', 'Crítica')),
-  tipo text not null check (tipo in ('Financeiro', 'Manutenção', 'Rescisão', 'Dúvidas', 'Outros')),
+  -- "tipo" aceita as opções fixas do select OU um texto livre digitado pelo
+  -- usuário quando a opção "Outros" é escolhida e especificada no formulário.
+  tipo text not null,
   titulo text not null,
   descricao text,
   data_vencimento date not null,
@@ -57,6 +60,7 @@ create trigger trg_set_updated_at
 create index if not exists idx_demandas_status on public.demandas (status);
 create index if not exists idx_demandas_vencimento on public.demandas (data_vencimento);
 create index if not exists idx_demandas_urgencia on public.demandas (urgencia);
+create index if not exists idx_demandas_codigo_imovel on public.demandas (codigo_imovel);
 
 -- ============================================================
 -- Row Level Security
@@ -87,3 +91,17 @@ drop policy if exists "Permitir exclusão autenticada" on public.demandas;
 create policy "Permitir exclusão autenticada"
   on public.demandas for delete
   using (true);
+
+-- ============================================================
+-- MIGRAÇÃO para bancos que já rodaram uma versão anterior deste
+-- schema (tabela "demandas" criada antes do campo codigo_imovel e
+-- da liberação do campo "tipo" para texto livre). Rode apenas os
+-- comandos abaixo caso a tabela já exista no seu projeto.
+-- ============================================================
+
+alter table public.demandas add column if not exists codigo_imovel text;
+create index if not exists idx_demandas_codigo_imovel on public.demandas (codigo_imovel);
+
+-- Remove a restrição antiga que limitava "tipo" às 5 opções fixas,
+-- permitindo salvar a especificação digitada quando "Outros" é escolhido.
+alter table public.demandas drop constraint if exists demandas_tipo_check;
