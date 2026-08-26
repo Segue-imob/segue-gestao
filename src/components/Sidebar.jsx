@@ -8,20 +8,22 @@ const NAV_ITEMS = [
 
 export default function Sidebar({ active, onChange, pendentesCount }) {
   return (
-    <aside className="hidden md:flex md:w-64 md:flex-col shrink-0 bg-segue-900 text-slate-200 h-screen sticky top-0">
-      <div className="px-6 pt-7 pb-6 border-b border-white/10">
+    <aside className="hidden md:flex md:w-64 md:flex-col shrink-0 bg-segue-black text-segue-cream h-screen sticky top-0">
+      <div className="px-6 pt-8 pb-6 border-b border-segue-cream/10">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-segue-accent text-segue-950 font-extrabold text-lg">
-            S
-          </div>
+          <img
+            src="/logo-segue.png"
+            alt="Logo Segue Imobiliária"
+            className="h-9 w-9 object-contain shrink-0"
+          />
           <div>
-            <p className="text-white font-bold leading-tight tracking-tight">SEGUE</p>
-            <p className="text-[11px] uppercase tracking-widest text-segue-400 font-semibold">
+            <p className="text-segue-cream font-bold leading-tight tracking-tight">SEGUE</p>
+            <p className="text-[11px] uppercase tracking-widest text-segue-terracotta font-semibold">
               Gestão
             </p>
           </div>
         </div>
-        <p className="mt-4 text-xs text-slate-400 leading-relaxed">Segue Imobiliária</p>
+        <p className="mt-4 text-xs text-segue-stone leading-relaxed">Segue Imobiliária</p>
       </div>
 
       <nav className="flex-1 px-3 py-5 space-y-1">
@@ -34,14 +36,20 @@ export default function Sidebar({ active, onChange, pendentesCount }) {
               onClick={() => onChange(item.id)}
               className={`focus-ring w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
-                  ? 'bg-segue-800 text-white shadow-sm'
-                  : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-segue-terracotta text-segue-cream shadow-sm'
+                  : 'text-segue-stone hover:bg-segue-cream/5 hover:text-segue-cream'
               }`}
             >
-              <Icon size={18} strokeWidth={2} className={isActive ? 'text-segue-accent' : ''} />
+              <Icon size={18} strokeWidth={2} className={isActive ? 'text-segue-cream' : ''} />
               <span>{item.label}</span>
               {item.id === 'demandas' && pendentesCount > 0 && (
-                <span className="ml-auto rounded-full bg-segue-accent/90 text-segue-950 text-[11px] font-bold px-2 py-0.5">
+                <span
+                  className={`ml-auto rounded-full text-[11px] font-bold px-2 py-0.5 ${
+                    isActive
+                      ? 'bg-segue-cream text-segue-terracotta'
+                      : 'bg-segue-brown text-segue-cream'
+                  }`}
+                >
                   {pendentesCount}
                 </span>
               )}
@@ -50,8 +58,8 @@ export default function Sidebar({ active, onChange, pendentesCount }) {
         })}
       </nav>
 
-      <div className="px-6 py-5 border-t border-white/10">
-        <p className="text-[11px] text-slate-500 leading-relaxed">
+      <div className="px-6 py-5 border-t border-segue-cream/10">
+        <p className="text-[11px] text-segue-stone leading-relaxed">
           SEGUE Gestão &copy; {new Date().getFullYear()}
           <br />
           Controle interno de demandas

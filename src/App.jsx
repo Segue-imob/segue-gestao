@@ -121,7 +121,7 @@ export default function App() {
   const pendentesCount = demandas.filter((d) => d.status === 'Pendente').length
 
   return (
-    <div className="min-h-screen flex bg-slate-50">
+    <div className="min-h-screen flex bg-segue-cream">
       <Sidebar active={tab} onChange={setTab} pendentesCount={pendentesCount} />
 
       <div className="flex-1 flex flex-col min-w-0">

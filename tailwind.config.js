@@ -5,22 +5,26 @@ export default {
     extend: {
       colors: {
         segue: {
-          950: '#0A1128',
-          900: '#0E1B3D',
-          800: '#132A5E',
-          700: '#1B3A7A',
-          600: '#254B96',
-          500: '#2F5FB8',
-          400: '#4E7FD6',
-          accent: '#F5A623',
+          black: '#161912',
+          cream: '#f8ede5',
+          terracotta: '#a64324',
+          stone: '#bfb8ae',
+          brown: '#593825',
+          // tons derivados para estados de hover/active/superfícies
+          'black-soft': '#22261c',
+          'terracotta-dark': '#8a3a1f',
+          'terracotta-light': '#c96a45',
+          'stone-light': '#ded9d1',
+          'stone-pale': '#eeece7',
+          'cream-dim': '#f0e3d8',
         },
       },
       fontFamily: {
         sans: ['"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        card: '0 1px 2px 0 rgba(14, 27, 61, 0.06), 0 1px 3px 0 rgba(14, 27, 61, 0.08)',
-        panel: '0 10px 40px -12px rgba(14, 27, 61, 0.35)',
+        card: '0 1px 2px 0 rgba(22, 25, 18, 0.06), 0 1px 3px 0 rgba(22, 25, 18, 0.08)',
+        panel: '0 10px 40px -12px rgba(22, 25, 18, 0.45)',
       },
       animation: {
         'fade-in': 'fadeIn 0.15s ease-out',

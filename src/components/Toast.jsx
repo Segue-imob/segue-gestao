@@ -10,19 +10,19 @@ export default function Toast({ toasts, onDismiss }) {
           key={t.id}
           className={`animate-slide-in flex items-start gap-3 rounded-lg px-4 py-3 shadow-panel ring-1 ${
             t.type === 'error'
-              ? 'bg-rose-50 ring-rose-200 text-rose-800'
-              : 'bg-white ring-slate-200 text-slate-800'
+              ? 'bg-red-50 ring-red-200 text-red-800'
+              : 'bg-segue-cream ring-segue-stone text-segue-black'
           }`}
         >
           {t.type === 'error' ? (
-            <XCircle size={18} className="mt-0.5 shrink-0 text-rose-600" />
+            <XCircle size={18} className="mt-0.5 shrink-0 text-red-600" />
           ) : (
-            <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+            <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-segue-terracotta" />
           )}
           <p className="text-sm leading-snug flex-1">{t.message}</p>
           <button
             onClick={() => onDismiss(t.id)}
-            className="text-slate-400 hover:text-slate-600 focus-ring rounded"
+            className="text-segue-black/40 hover:text-segue-black/70 focus-ring rounded"
             aria-label="Fechar notificação"
           >
             <X size={16} />

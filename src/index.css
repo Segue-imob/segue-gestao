@@ -11,6 +11,7 @@ body,
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  background-color: #f8ede5;
 }
 
 ::-webkit-scrollbar {
@@ -21,17 +22,17 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(14, 27, 61, 0.18);
+  background-color: rgba(22, 25, 18, 0.18);
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(14, 27, 61, 0.32);
+  background-color: rgba(22, 25, 18, 0.32);
 }
 
 .focus-ring {
   outline: none;
 }
 .focus-ring:focus-visible {
-  outline: 2px solid #2f5fb8;
+  outline: 2px solid #a64324;
   outline-offset: 2px;
 }

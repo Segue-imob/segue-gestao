@@ -69,42 +69,42 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-xl font-bold text-segue-950 tracking-tight">Agenda de prazos</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <h1 className="text-xl font-bold text-segue-black tracking-tight">Agenda de prazos</h1>
+          <p className="text-sm text-segue-black/55 mt-0.5">
             Acompanhe as demandas por data de vencimento.
           </p>
         </div>
         <button
           onClick={() => onNovaDemanda()}
-          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-segue-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-segue-800 shadow-card"
+          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-segue-terracotta px-4 py-2.5 text-sm font-semibold text-segue-cream hover:bg-segue-terracotta-dark shadow-card"
         >
           <Plus size={16} />
           Nova demanda
         </button>
       </div>
 
-      <div className="rounded-xl bg-white shadow-card ring-1 ring-slate-100 overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-          <h2 className="text-base font-semibold text-segue-950">
+      <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone overflow-hidden">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-segue-stone/30">
+          <h2 className="text-base font-semibold text-segue-black">
             {MONTHS[month]} {year}
           </h2>
           <div className="flex items-center gap-1.5">
             <button
               onClick={goToday}
-              className="focus-ring rounded-lg px-3 py-1.5 text-xs font-semibold text-segue-700 hover:bg-segue-50"
+              className="focus-ring rounded-lg px-3 py-1.5 text-xs font-semibold text-segue-terracotta hover:bg-segue-terracotta/10"
             >
               Hoje
             </button>
             <button
               onClick={() => goMonth(-1)}
-              className="focus-ring rounded-lg p-1.5 text-slate-500 hover:bg-slate-100"
+              className="focus-ring rounded-lg p-1.5 text-segue-black/55 hover:bg-segue-stone-pale"
               aria-label="Mês anterior"
             >
               <ChevronLeft size={18} />
             </button>
             <button
               onClick={() => goMonth(1)}
-              className="focus-ring rounded-lg p-1.5 text-slate-500 hover:bg-slate-100"
+              className="focus-ring rounded-lg p-1.5 text-segue-black/55 hover:bg-segue-stone-pale"
               aria-label="Próximo mês"
             >
               <ChevronRight size={18} />
@@ -112,11 +112,11 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-7 border-b border-slate-100 bg-slate-50">
+        <div className="grid grid-cols-7 border-b border-segue-stone/30 bg-segue-stone-pale">
           {WEEKDAYS.map((w) => (
             <div
               key={w}
-              className="py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-slate-500"
+              className="py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-segue-black/55"
             >
               {w}
             </div>
@@ -135,17 +135,17 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
                 key={idx}
                 disabled={!cell.current}
                 onClick={() => cell.current && setSelectedDate(iso)}
-                className={`focus-ring relative min-h-[92px] border-b border-r border-slate-100 p-2 text-left align-top transition-colors ${
-                  cell.current ? 'hover:bg-segue-50/60 cursor-pointer' : 'bg-slate-50/40'
+                className={`focus-ring relative min-h-[92px] border-b border-r border-segue-stone/30 p-2 text-left align-top transition-colors ${
+                  cell.current ? 'hover:bg-segue-terracotta/10 cursor-pointer' : 'bg-segue-stone-pale/40'
                 } ${idx % 7 === 6 ? 'border-r-0' : ''}`}
               >
                 <span
                   className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
                     isToday
-                      ? 'bg-segue-700 text-white'
+                      ? 'bg-segue-terracotta text-segue-cream'
                       : cell.current
-                        ? 'text-slate-700'
-                        : 'text-slate-300'
+                        ? 'text-segue-black/80'
+                        : 'text-segue-stone'
                   }`}
                 >
                   {cell.day}
@@ -163,7 +163,7 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
                   </div>
                 )}
                 {items.length > 0 && (
-                  <p className="mt-1 text-[10px] font-semibold text-slate-500">
+                  <p className="mt-1 text-[10px] font-semibold text-segue-black/55">
                     {items.length} {items.length === 1 ? 'demanda' : 'demandas'}
                   </p>
                 )}
@@ -173,8 +173,8 @@ export default function Agenda({ demandas, onOpenDemanda, onNovaDemanda }) {
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-500">
-        <span className="font-semibold text-slate-600">Legenda de urgência:</span>
+      <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-segue-black/55">
+        <span className="font-semibold text-segue-black/70">Legenda de urgência:</span>
         {['Baixa', 'Média', 'Alta', 'Crítica'].map((label) => (
           <span key={label} className="inline-flex items-center gap-1.5">
             <span className={`h-2 w-2 rounded-full ${urgenciaMeta(label).dot}`} />

@@ -31,30 +31,30 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-xl font-bold text-segue-950 tracking-tight">Demandas</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
+          <h1 className="text-xl font-bold text-segue-black tracking-tight">Demandas</h1>
+          <p className="text-sm text-segue-black/55 mt-0.5">
             {demandas.length} demanda{demandas.length !== 1 ? 's' : ''} cadastrada
             {demandas.length !== 1 ? 's' : ''} no total.
           </p>
         </div>
         <button
           onClick={() => onNovaDemanda()}
-          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-segue-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-segue-800 shadow-card"
+          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-segue-terracotta px-4 py-2.5 text-sm font-semibold text-segue-cream hover:bg-segue-terracotta-dark shadow-card"
         >
           <Plus size={16} />
           Nova demanda
         </button>
       </div>
 
-      <div className="rounded-xl bg-white shadow-card ring-1 ring-slate-100 overflow-hidden">
-        <div className="flex flex-wrap items-center gap-3 p-4 border-b border-slate-100">
+      <div className="rounded-xl bg-segue-cream shadow-card ring-1 ring-segue-stone overflow-hidden">
+        <div className="flex flex-wrap items-center gap-3 p-4 border-b border-segue-stone/30">
           <div className="relative flex-1 min-w-[220px]">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-segue-black/40" />
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Buscar por código, título ou descrição..."
-              className="focus-ring w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-sm text-slate-700 placeholder:text-slate-400"
+              className="focus-ring w-full rounded-lg border border-segue-stone bg-segue-stone-pale py-2 pl-9 pr-3 text-sm text-segue-black/80 placeholder:text-segue-black/40"
             />
           </div>
 
@@ -71,7 +71,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-100 bg-slate-50/60 text-left text-[11px] uppercase tracking-wide text-slate-500">
+              <tr className="border-b border-segue-stone/30 bg-segue-stone-pale/60 text-left text-[11px] uppercase tracking-wide text-segue-black/55">
                 <th className="px-4 py-3 font-semibold">Código</th>
                 <th className="px-4 py-3 font-semibold">Título</th>
                 <th className="px-4 py-3 font-semibold">Origem</th>
@@ -85,7 +85,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
             <tbody>
               {loading && (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-slate-400 text-sm">
+                  <td colSpan={8} className="px-4 py-10 text-center text-segue-black/40 text-sm">
                     Carregando demandas...
                   </td>
                 </tr>
@@ -93,33 +93,38 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
 
               {!loading && filtradas.length === 0 && (
                 <tr>
-                  <td colSpan={8} className="px-4 py-10 text-center text-slate-400 text-sm">
+                  <td colSpan={8} className="px-4 py-10 text-center text-segue-black/40 text-sm">
                     Nenhuma demanda encontrada com os filtros atuais.
                   </td>
                 </tr>
               )}
 
               {!loading &&
-                filtradas.map((d) => (
-                  <tr key={d.id} className="border-b border-slate-50 hover:bg-slate-50/60 transition-colors">
-                    <td className="px-4 py-3 font-mono text-xs text-slate-500">{d.codigo}</td>
+                filtradas.map((d, idx) => (
+                  <tr
+                    key={d.id}
+                    className={`border-b border-segue-stone/20 hover:bg-segue-terracotta/5 transition-colors ${
+                      idx % 2 === 0 ? 'bg-segue-cream' : 'bg-segue-stone-pale/50'
+                    }`}
+                  >
+                    <td className="px-4 py-3 font-mono text-xs text-segue-black/55">{d.codigo}</td>
                     <td className="px-4 py-3 max-w-[240px]">
                       <button
                         onClick={() => onEditDemanda(d)}
-                        className="focus-ring text-left font-medium text-slate-800 hover:text-segue-700 line-clamp-1"
+                        className="focus-ring text-left font-medium text-segue-black hover:text-segue-terracotta line-clamp-1"
                         title={d.titulo}
                       >
                         {d.titulo}
                       </button>
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{d.origem}</td>
-                    <td className="px-4 py-3 text-slate-600">{d.tipo}</td>
+                    <td className="px-4 py-3 text-segue-black/70">{d.origem}</td>
+                    <td className="px-4 py-3 text-segue-black/70">{d.tipo}</td>
                     <td className="px-4 py-3">
                       <Badge className={urgenciaMeta(d.urgencia).badge} dotClassName={urgenciaMeta(d.urgencia).dot}>
                         {d.urgencia}
                       </Badge>
                     </td>
-                    <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
+                    <td className="px-4 py-3 text-segue-black/70 whitespace-nowrap">
                       {formatDateBR(d.data_vencimento)}
                     </td>
                     <td className="px-4 py-3">
@@ -129,14 +134,14 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => onEditDemanda(d)}
-                          className="focus-ring rounded-lg p-1.5 text-slate-400 hover:bg-segue-50 hover:text-segue-700"
+                          className="focus-ring rounded-lg p-1.5 text-segue-black/40 hover:bg-segue-terracotta/10 hover:text-segue-terracotta"
                           aria-label="Editar"
                         >
                           <Pencil size={15} />
                         </button>
                         <button
                           onClick={() => setConfirmDelete(d)}
-                          className="focus-ring rounded-lg p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600"
+                          className="focus-ring rounded-lg p-1.5 text-segue-black/40 hover:bg-rose-50 hover:text-rose-600"
                           aria-label="Excluir"
                         >
                           <Trash2 size={15} />
@@ -152,17 +157,17 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
 
       {confirmDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
-          <div className="absolute inset-0 bg-segue-950/50 backdrop-blur-sm" onClick={() => setConfirmDelete(null)} />
-          <div className="relative w-full max-w-sm rounded-xl bg-white p-6 shadow-panel">
-            <h3 className="text-base font-semibold text-segue-950">Excluir demanda?</h3>
-            <p className="mt-2 text-sm text-slate-500">
-              Tem certeza que deseja excluir <span className="font-medium text-slate-700">{confirmDelete.titulo}</span>?
+          <div className="absolute inset-0 bg-segue-black/50 backdrop-blur-sm" onClick={() => setConfirmDelete(null)} />
+          <div className="relative w-full max-w-sm rounded-xl bg-segue-cream p-6 shadow-panel">
+            <h3 className="text-base font-semibold text-segue-black">Excluir demanda?</h3>
+            <p className="mt-2 text-sm text-segue-black/55">
+              Tem certeza que deseja excluir <span className="font-medium text-segue-black/80">{confirmDelete.titulo}</span>?
               Essa ação não pode ser desfeita.
             </p>
             <div className="mt-5 flex justify-end gap-3">
               <button
                 onClick={() => setConfirmDelete(null)}
-                className="focus-ring rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
+                className="focus-ring rounded-lg px-4 py-2 text-sm font-medium text-segue-black/70 hover:bg-segue-stone-pale"
               >
                 Cancelar
               </button>
@@ -171,7 +176,7 @@ export default function Demandas({ demandas, loading, onNovaDemanda, onEditDeman
                   onDeleteDemanda(confirmDelete)
                   setConfirmDelete(null)
                 }}
-                className="focus-ring rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700"
+                className="focus-ring rounded-lg bg-rose-600 px-4 py-2 text-sm font-semibold text-segue-cream hover:bg-rose-700"
               >
                 Excluir
               </button>
@@ -190,7 +195,7 @@ function FilterSelect({ label, value, onChange, options }) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         aria-label={label}
-        className="focus-ring appearance-none rounded-lg border border-slate-200 bg-white py-2 pl-3 pr-8 text-sm text-slate-700 hover:border-slate-300"
+        className="focus-ring appearance-none rounded-lg border border-segue-stone bg-segue-cream py-2 pl-3 pr-8 text-sm text-segue-black/80 hover:border-segue-stone"
       >
         {options.map((o) => (
           <option key={o} value={o}>
@@ -198,7 +203,7 @@ function FilterSelect({ label, value, onChange, options }) {
           </option>
         ))}
       </select>
-      <ChevronDown size={14} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+      <ChevronDown size={14} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-segue-black/40" />
     </div>
   )
 }

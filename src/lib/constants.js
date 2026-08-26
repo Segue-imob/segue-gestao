@@ -4,30 +4,32 @@ export const TIPOS = ['Financeiro', 'Manutenção', 'Rescisão', 'Dúvidas', 'Ou
 
 export const STATUS_LIST = ['Pendente', 'Em Andamento', 'Concluído']
 
+// Urgência segue a paleta corporativa:
+// Baixa -> Stone Gray | Média -> Warm Brown | Alta -> Terracotta | Crítica -> vermelho padrão de erro
 export const URGENCIAS = [
   {
     label: 'Baixa',
-    dot: 'bg-emerald-500',
-    badge: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200',
-    solid: 'bg-emerald-500',
+    dot: 'bg-segue-stone',
+    badge: 'bg-segue-stone-pale text-segue-black/70 ring-1 ring-inset ring-segue-stone',
+    solid: 'bg-segue-stone',
   },
   {
     label: 'Média',
-    dot: 'bg-amber-400',
-    badge: 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200',
-    solid: 'bg-amber-400',
+    dot: 'bg-segue-brown',
+    badge: 'bg-segue-brown/10 text-segue-brown ring-1 ring-inset ring-segue-brown/25',
+    solid: 'bg-segue-brown',
   },
   {
     label: 'Alta',
-    dot: 'bg-orange-500',
-    badge: 'bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-200',
-    solid: 'bg-orange-500',
+    dot: 'bg-segue-terracotta',
+    badge: 'bg-segue-terracotta/10 text-segue-terracotta ring-1 ring-inset ring-segue-terracotta/25',
+    solid: 'bg-segue-terracotta',
   },
   {
     label: 'Crítica',
-    dot: 'bg-rose-600',
-    badge: 'bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-200',
-    solid: 'bg-rose-600',
+    dot: 'bg-red-600',
+    badge: 'bg-red-50 text-red-700 ring-1 ring-inset ring-red-200',
+    solid: 'bg-red-600',
   },
 ]
 
@@ -37,12 +39,12 @@ export function urgenciaMeta(label) {
 
 export const STATUS_META = {
   Pendente: {
-    badge: 'bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-300',
-    dot: 'bg-slate-400',
+    badge: 'bg-segue-stone-pale text-segue-black/70 ring-1 ring-inset ring-segue-stone',
+    dot: 'bg-segue-stone',
   },
   'Em Andamento': {
-    badge: 'bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-200',
-    dot: 'bg-blue-500',
+    badge: 'bg-segue-terracotta/10 text-segue-terracotta ring-1 ring-inset ring-segue-terracotta/25',
+    dot: 'bg-segue-terracotta',
   },
   Concluído: {
     badge: 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200',
@@ -51,9 +53,9 @@ export const STATUS_META = {
 }
 
 export const ORIGEM_ICON_COLOR = {
-  Inquilino: 'text-violet-600 bg-violet-50',
-  Proprietário: 'text-blue-600 bg-blue-50',
-  Interna: 'text-slate-600 bg-slate-100',
+  Inquilino: 'text-segue-terracotta bg-segue-terracotta/10',
+  Proprietário: 'text-segue-brown bg-segue-brown/10',
+  Interna: 'text-segue-black/70 bg-segue-stone-pale',
 }
 
 export function formatDateBR(dateStr) {
